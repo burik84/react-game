@@ -1,4 +1,18 @@
 import React, { useState, useEffect, Fragment } from 'react';
+import GameFields from '../layout/GameFields/GameFields';
+
+import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
+
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    root: {
+      '& > *': {
+        margin: theme.spacing(1),
+      },
+    },
+  })
+);
 
 type TProps = {
   isGame: boolean;
@@ -9,6 +23,58 @@ type TProps = {
   // isLoading: boolean;
   // isResult: boolean;
 };
+
+const cardArray = [
+  {
+    name: 'fries',
+    // img:'./assets/images/fries.png',
+  },
+  {
+    name: 'fries',
+    // img:'./assets/images/fries.png',
+  },
+  {
+    name: 'cheeseburger',
+    // img:'./assets/images/cheeseburger.png',
+  },
+  {
+    name: 'cheeseburger',
+    // img:'./assets/images/cheeseburger.png',
+  },
+  {
+    name: 'hotdog',
+    // img:'./assets/images/hotdog.png',
+  },
+  {
+    name: 'hotdog',
+    // img:'./assets/images/hotdog.png',
+  },
+  {
+    name: 'ice-cream',
+    // img:'./assets/images/ice-cream.png',
+  },
+  {
+    name: 'ice-cream',
+    // img:'./assets/images/ice-cream.png',
+  },
+  {
+    name: 'milkshake',
+    // img:'./assets/images/milkshake.png',
+  },
+  {
+    name: 'milkshake',
+    // img:'./assets/images/milkshake.png',
+  },
+  {
+    name: 'pizza',
+    // img:'./assets/images/pizza.png',
+  },
+  {
+    name: 'pizza',
+    // img:'./assets/images/pizza.png',
+  },
+];
+
 const Game: React.FC<TProps> = ({
   isGame,
   startGame,
@@ -16,9 +82,12 @@ const Game: React.FC<TProps> = ({
   changeCounter,
   changeWinner,
 }) => {
+  const classes = useStyles();
+
   const [cardsChosen, setCardsChosen] = useState<string[]>([]);
   const [cardsChosenID, setCardsID] = useState<number[]>([]);
   const [cardsWon, setCardWon] = useState<string[]>([]);
+  const [cardsData, setCardsData] = useState(cardArray);
 
   useEffect(() => {
     if (cardsChosen.length === 2) {
@@ -32,63 +101,13 @@ const Game: React.FC<TProps> = ({
     }
   }, [cardsWon]);
 
-  const cardArray = [
-    {
-      name: 'fries',
-      // img:'./assets/images/fries.png',
-    },
-    {
-      name: 'fries',
-      // img:'./assets/images/fries.png',
-    },
-    {
-      name: 'cheeseburger',
-      // img:'./assets/images/cheeseburger.png',
-    },
-    {
-      name: 'cheeseburger',
-      // img:'./assets/images/cheeseburger.png',
-    },
-    {
-      name: 'hotdog',
-      // img:'./assets/images/hotdog.png',
-    },
-    {
-      name: 'hotdog',
-      // img:'./assets/images/hotdog.png',
-    },
-    {
-      name: 'ice-cream',
-      // img:'./assets/images/ice-cream.png',
-    },
-    {
-      name: 'ice-cream',
-      // img:'./assets/images/ice-cream.png',
-    },
-    {
-      name: 'milkshake',
-      // img:'./assets/images/milkshake.png',
-    },
-    {
-      name: 'milkshake',
-      // img:'./assets/images/milkshake.png',
-    },
-    {
-      name: 'pizza',
-      // img:'./assets/images/pizza.png',
-    },
-    {
-      name: 'pizza',
-      // img:'./assets/images/pizza.png',
-    },
-  ];
-
   const handleClickStart = () => {
     startGame();
     setCardsChosen([]);
     setCardsID([]);
     setCardWon([]);
-    // cardArray.sort(() => 0.5 - Math.random());
+    cardArray.sort(() => 0.5 - Math.random());
+    setCardsData(cardArray);
   };
   const handleClickStop = () => {
     setCardsChosen([]);
@@ -96,12 +115,11 @@ const Game: React.FC<TProps> = ({
     stopGame();
   };
 
-  const flipCard = (event: any, item: any) => {
+  const flipCard = (event: any, name: string) => {
     // console.log(event.currentTarget.dataset.id);
 
     const cardID = event.currentTarget.dataset.id;
-    // console.log(cardID, item.name);
-    const name: string = item.name;
+    console.log(cardID, name);
     setCardsChosen((prev) => [...prev, name]);
     setCardsID((prev) => [...prev, cardID]);
     console.log();
@@ -133,22 +151,36 @@ const Game: React.FC<TProps> = ({
 
   return (
     <Fragment>
-      <div className="grid" style={styles.grid}>
-        {!isGame && <div className="overflow"></div>}
-        {cardArray.map((item: { name: string }, index: number) => (
-          <div
-            className="card"
-            data-id={index}
-            key={index}
-            onClick={(event) => flipCard(event, item)}
-          >
-            <h6>{item.name}</h6>
-            <h3>Card</h3>
+      <div className="game-fields">
+        <GameFields
+          clickCards={flipCard}
+          cardsData={cardsData}
+          isGame={isGame}
+        />
+        {!isGame && (
+          <div className={classes.root}>
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={handleClickStart}
+            >
+              Старт
+            </Button>
           </div>
-        ))}
+        )}
+
+        {isGame && (
+          <div className={classes.root}>
+            <Button
+              variant="contained"
+              color="secondary"
+              onClick={handleClickStop}
+            >
+              Стоп
+            </Button>
+          </div>
+        )}
       </div>
-      {!isGame && <button onClick={handleClickStart}>Старт</button>}
-      {isGame && <button onClick={handleClickStop}>Стоп</button>}
     </Fragment>
   );
 };
