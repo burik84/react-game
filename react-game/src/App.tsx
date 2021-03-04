@@ -44,8 +44,9 @@ function App() {
       <Router>
         <Container>
           <Grid
+            container
             spacing={1}
-            direction="column"
+            direction="row"
             justify="space-between"
             alignItems="center"
             className={classes.grid}

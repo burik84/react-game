@@ -48,7 +48,6 @@ const Home: React.FC<TProps> = () => {
   console.log('состояние победы - ', winner);
   return (
     <div>
-      <h2> Game Page</h2>
       {isGame && (
         <Timer
           winner={winner}

@@ -1,34 +1,44 @@
 import React from 'react';
-import Paper from '@material-ui/core/Paper';
-import Grid from '@material-ui/core/Grid';
+import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
+import { Paper, Grid, Card, CardContent, Typography } from '@material-ui/core';
 
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    root: {
+      minWidth: 275,
+    },
+    card: {
+      cursor: 'pointer',
+    },
+  })
+);
 type TProps = {
   grid: any;
-  classes: string;
   name: string;
   index: number;
   clickCards: any;
 };
 
-const GameCard: React.FC<TProps> = ({
-  grid,
-  classes,
-  name,
-  index,
-  clickCards,
-}) => {
+const GameCard: React.FC<TProps> = ({ grid, name, index, clickCards }) => {
+  const classes = useStyles();
   return (
     <Grid
       item
-      xs={grid}
+      xs={3}
       onClick={(e) => clickCards(e, name)}
       data-id={index}
-      className="card"
+      className={classes.card}
     >
-      <Paper className={classes}>
-        <h4>{name}</h4>
-        <h3>Cards</h3>
-      </Paper>
+      <Card className={classes.root}>
+        <CardContent>
+          <Typography variant="h5" component="h3">
+            {name}
+          </Typography>
+          <Typography variant="h5" component="h3">
+            Cards
+          </Typography>
+        </CardContent>
+      </Card>
     </Grid>
   );
 };

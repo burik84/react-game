@@ -9,11 +9,6 @@ const useStyles = makeStyles((theme: Theme) =>
     root: {
       flexGrow: 1,
     },
-    paper: {
-      padding: theme.spacing(2),
-      textAlign: 'center',
-      color: theme.palette.text.secondary,
-    },
   })
 );
 
@@ -30,7 +25,7 @@ const GameFilds: React.FC<TProps> = ({ clickCards, cardsData, isGame }) => {
     <div className={classes.root}>
       <Grid
         container
-        spacing={4}
+        spacing={1}
         direction="row"
         justify="center"
         alignItems="center"
@@ -39,8 +34,7 @@ const GameFilds: React.FC<TProps> = ({ clickCards, cardsData, isGame }) => {
         {!isGame && <div className="overflow"></div>}
         {cardsData.map((item: { name: string }, index: number) => (
           <GameCard
-            classes={classes.paper}
-            grid={4}
+            grid={3}
             name={item.name}
             index={index}
             key={index}
