@@ -116,7 +116,6 @@ const Game: React.FC<TProps> = ({
   };
 
   const flipCard = (event: any, name: string) => {
-
     const cardID = event.currentTarget.dataset.id;
     setCardsChosen((prev) => [...prev, name]);
     setCardsID((prev) => [...prev, cardID]);
@@ -141,7 +140,6 @@ const Game: React.FC<TProps> = ({
     setCardsID([]);
     changeCounter();
   };
-  console.log(cardsWon);
 
   return (
     <Fragment>

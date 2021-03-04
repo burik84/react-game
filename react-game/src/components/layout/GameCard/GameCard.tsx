@@ -17,30 +17,37 @@ type TProps = {
   name: string;
   index: number;
   clickCards: any;
-  isGame:boolean;
-  cardsDataWon:any;
-  cardsChosenID:any;
+  isGame: boolean;
+  cardsDataWon: any;
+  cardsChosenID: any;
 };
 
-const GameCard: React.FC<TProps> = ({ grid, name, index, clickCards,isGame,cardsDataWon,cardsChosenID }) => {
+const GameCard: React.FC<TProps> = ({
+  grid,
+  name,
+  index,
+  clickCards,
+  isGame,
+  cardsDataWon,
+  cardsChosenID,
+}) => {
   const classes = useStyles();
-  let text:string=''
-  let answer:boolean=false
-  console.log(cardsDataWon)
-  const isFlip=()=>{
-    if(index===+cardsChosenID[0] ||index===+cardsChosenID[1]){
-      return isGame?name:name
-    }else {
-      return isGame?'Unknown':name
+  let text: string = '';
+  let answer: boolean = false;
+  const isFlip = () => {
+    if (index === +cardsChosenID[0] || index === +cardsChosenID[1]) {
+      return isGame ? name : name;
+    } else {
+      return isGame ? 'Unknown' : name;
     }
-  }
-  text=isFlip()
-    cardsDataWon.forEach((item:string)=>{
-      if(name===item){
-        text=name
-        answer=true
-      }
-    })
+  };
+  text = isFlip();
+  cardsDataWon.forEach((item: string) => {
+    if (name === item) {
+      text = name;
+      answer = true;
+    }
+  });
 
   return (
     <Grid

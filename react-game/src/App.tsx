@@ -44,16 +44,9 @@ function App() {
     <div className="App">
       <Router>
         <Container>
-          <Grid
-            container
-            spacing={1}
-            direction="row"
-            className={classes.grid}
-          >
-            <Grid item xs={12} >
-              <Paper className={classes.paper}>
-                <Header />
-              </Paper>
+          <Grid container spacing={1} direction="row" className={classes.grid}>
+            <Grid item xs={12}>
+              <Header />
             </Grid>
 
             <Grid item xs={12}>
