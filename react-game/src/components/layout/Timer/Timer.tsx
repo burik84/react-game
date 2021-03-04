@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import Box from '@material-ui/core/Box';
 
 type TProps = {
   winner: boolean;
@@ -30,7 +31,7 @@ const Timer: React.FC<TProps> = ({ winner, isGame, stopGame, stopTimer }) => {
     }
   }, [winner, isGame]);
 
-  return <div>Время: {timer} </div>;
+  return <Box>Время: {timer}</Box>;
 };
 
 export default Timer;
