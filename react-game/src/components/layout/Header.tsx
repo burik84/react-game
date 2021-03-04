@@ -29,7 +29,9 @@ const Header = () => {
 
   return (
     <header>
+      <Typography variant="h5" component="h1"> Memory Game </Typography>
       <Box className={classes.root} component="nav">
+
         <List component="ul" className={classes.list}>
           <ListItem
             button

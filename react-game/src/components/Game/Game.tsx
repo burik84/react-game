@@ -91,7 +91,7 @@ const Game: React.FC<TProps> = ({
 
   useEffect(() => {
     if (cardsChosen.length === 2) {
-      setTimeout(checkMatch, 500);
+      setTimeout(checkMatch, 1000);
     }
   }, [cardsChosen]);
 
@@ -116,23 +116,17 @@ const Game: React.FC<TProps> = ({
   };
 
   const flipCard = (event: any, name: string) => {
-    // console.log(event.currentTarget.dataset.id);
 
     const cardID = event.currentTarget.dataset.id;
-    console.log(cardID, name);
     setCardsChosen((prev) => [...prev, name]);
     setCardsID((prev) => [...prev, cardID]);
-    console.log();
   };
   const checkMatch = () => {
-    console.log('проверка совпадений');
     const optionsOneID = cardsChosenID[0];
     const optionsTwoID = cardsChosenID[1];
 
     const optionsOne = cardsChosen[0];
     const optionsTwo = cardsChosen[1];
-
-    console.log(optionsOneID, optionsTwoID);
 
     if (optionsOneID === optionsTwoID) {
       console.log('Нажали на одну и ту же карточку');
@@ -156,6 +150,8 @@ const Game: React.FC<TProps> = ({
           clickCards={flipCard}
           cardsData={cardsData}
           isGame={isGame}
+          cardsDataWon={cardsWon}
+          cardsChosenID={cardsChosenID}
         />
         {!isGame && (
           <div className={classes.root}>

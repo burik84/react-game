@@ -25,12 +25,9 @@ const Home: React.FC<TProps> = () => {
     setCounter(0);
     setResultTime(0);
     setWinner(false);
-    console.log('start game');
-    // console.log(result);
   };
 
   const stopGame = () => {
-    console.log('stop game');
     setStartGame(false);
   };
 
@@ -45,7 +42,6 @@ const Home: React.FC<TProps> = () => {
     setResultTime(time);
     setData(time, counter);
   };
-  console.log('состояние победы - ', winner);
   return (
     <div>
       {isGame && (
@@ -61,7 +57,7 @@ const Home: React.FC<TProps> = () => {
         <p>
           {' '}
           На экране показаны картинки. Вам необходимо собрать пары из картинок
-          за короткое время.{' '}
+          за короткое время. Кнопка Старт перемешивает карточки{' '}
         </p>
       )}
       <Game

@@ -5,7 +5,7 @@ import { Paper, Grid, Card, CardContent, Typography } from '@material-ui/core';
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
-      minWidth: 275,
+      minWidth: 105,
     },
     card: {
       cursor: 'pointer',
@@ -17,10 +17,31 @@ type TProps = {
   name: string;
   index: number;
   clickCards: any;
+  isGame:boolean;
+  cardsDataWon:any;
+  cardsChosenID:any;
 };
 
-const GameCard: React.FC<TProps> = ({ grid, name, index, clickCards }) => {
+const GameCard: React.FC<TProps> = ({ grid, name, index, clickCards,isGame,cardsDataWon,cardsChosenID }) => {
   const classes = useStyles();
+  let text:string=''
+  let answer:boolean=false
+  console.log(cardsDataWon)
+  const isFlip=()=>{
+    if(index===+cardsChosenID[0] ||index===+cardsChosenID[1]){
+      return isGame?name:name
+    }else {
+      return isGame?'Unknown':name
+    }
+  }
+  text=isFlip()
+    cardsDataWon.forEach((item:string)=>{
+      if(name===item){
+        text=name
+        answer=true
+      }
+    })
+
   return (
     <Grid
       item
@@ -31,11 +52,8 @@ const GameCard: React.FC<TProps> = ({ grid, name, index, clickCards }) => {
     >
       <Card className={classes.root}>
         <CardContent>
-          <Typography variant="h5" component="h3">
-            {name}
-          </Typography>
-          <Typography variant="h5" component="h3">
-            Cards
+          <Typography variant="h6" component="h3">
+            {text}
           </Typography>
         </CardContent>
       </Card>

@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import { Container, Grid, Paper } from '@material-ui/core';
+import { Container, Grid, Paper, Typography } from '@material-ui/core';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
+import { sizing } from '@material-ui/system';
 
 import Home from './components/pages/Home/Home';
 import About from './components/pages/About/About';
@@ -47,18 +48,12 @@ function App() {
             container
             spacing={1}
             direction="row"
-            justify="space-between"
-            alignItems="center"
             className={classes.grid}
           >
-            <Grid item xs={12}>
+            <Grid item xs={12} >
               <Paper className={classes.paper}>
                 <Header />
               </Paper>
-            </Grid>
-
-            <Grid item xs={12}>
-              <h1>Memory Game</h1>
             </Grid>
 
             <Grid item xs={12}>

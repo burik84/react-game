@@ -16,9 +16,11 @@ type TProps = {
   clickCards: any;
   cardsData: any;
   isGame: boolean;
+  cardsDataWon:any;
+  cardsChosenID:any;
 };
 
-const GameFilds: React.FC<TProps> = ({ clickCards, cardsData, isGame }) => {
+const GameFilds: React.FC<TProps> = ({ clickCards, cardsData, isGame,cardsDataWon,cardsChosenID }) => {
   const classes = useStyles();
 
   return (
@@ -39,6 +41,9 @@ const GameFilds: React.FC<TProps> = ({ clickCards, cardsData, isGame }) => {
             index={index}
             key={index}
             clickCards={clickCards}
+            isGame={isGame}
+            cardsChosenID={cardsChosenID}
+            cardsDataWon={cardsDataWon}
           />
         ))}
       </Grid>
