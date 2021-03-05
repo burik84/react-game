@@ -9,7 +9,7 @@ const setData=(time:number,counter:number)=> {
   let newData=[]
   const arr:any=getData()
   const year=new Date().getFullYear()
-  const month=new Date().getMonth()
+  const month=new Date().getMonth()+1
   const day=new Date().getDay()
   const hour=new Date().getHours()
   const min=new Date().getMinutes()
@@ -22,6 +22,7 @@ const setData=(time:number,counter:number)=> {
   }else{
     newData=[...arr,data]
   }
+  console.log(newData)
 
   localStorage.setItem("data", JSON.stringify(newData));
 }

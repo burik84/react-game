@@ -19,7 +19,6 @@ type TProps = {
 };
 const List: React.FC<TProps> = ({ data }) => {
   const classes = useStyles();
-  console.log(data);
   return (
     <TableContainer component={Paper}>
       <Table className={classes.table} size="small" aria-label="a dense table">
